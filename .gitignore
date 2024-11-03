@@ -1,0 +1,8 @@
+.idea/
+node_modules/
+.rollup.cache/
+nl.ndat.win-smtc.sdPlugin/bin
+nl.ndat.win-smtc.sdPlugin/logs
+nl.ndat.win-smtc.sdPlugin/bridge
+packages/smtc-bridge/obj/
+packages/smtc-bridge/bin/

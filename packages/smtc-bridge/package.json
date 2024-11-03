@@ -1,0 +1,5 @@
+{
+	"scripts": {
+		"build": "dotnet publish -c Release -o ../../nl.ndat.win-smtc.sdPlugin/bridge"
+	}
+}

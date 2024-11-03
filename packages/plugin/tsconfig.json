@@ -1,0 +1,13 @@
+{
+	"extends": "@tsconfig/node20/tsconfig.json",
+	"compilerOptions": {
+		"composite": true,
+		"outDir": "../../nl.ndat.win-smtc.sdPlugin/bin/",
+		"customConditions": ["node"],
+		"module": "ES2022",
+		"moduleResolution": "Bundler",
+		"noImplicitOverride": true
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"]
+}

@@ -1,0 +1,50 @@
+{
+	"UUID": "nl.ndat.win-smtc",
+	"Name": "Windows SMTC",
+	"Description": "Implementation of the System Media Transport Controls API",
+	"Version": "0.1.0.0",
+	"Author": "Niels van Velzen",
+	"URL": "https://github.com/nielsvanvelzen/streamdeck-smtc",
+	"Category": "System Media Transport Controls",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"Icon": "imgs/plugin/marketplace",
+	"CodePath": "bin/plugin.js",
+	"SDKVersion": 2,
+	"Software": {
+		"MinimumVersion": "6.4"
+	},
+	"OS": [
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "20",
+		"Debug": "enabled"
+	},
+	"Actions": [
+		{
+			"Name": "Media thumbnail",
+			"UUID": "nl.ndat.win-smtc.thumbnail",
+			"Icon": "imgs/actions/counter/icon",
+			"Tooltip": "Displays the image for the currently playing media.",
+			"Controllers": ["Keypad"],
+			"UserTitleEnabled": false,
+			"DisableAutomaticStates": true,
+			"SupportedInMultiActions": false,
+			"States": [
+				{
+					"Image": "imgs/actions/counter/icon",
+					"TitleAlignment": "bottom",
+					"Name": "No media playing or missing image"
+				},
+				{
+					"Image": "imgs/actions/counter/icon",
+					"ShowTitle": false,
+					"Name": "Media playing"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,10 @@
+{
+	"scripts": {
+		"build": "npm run build --workspaces -- ",
+		"watch": "npm run watch -w packages/plugin -- "
+	},
+	"workspaces": [
+		"packages/smtc-bridge",
+		"packages/plugin"
+	]
+}
