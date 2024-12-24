@@ -1,22 +1,13 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using Windows.Media.Control;
+﻿using Windows.Media.Control;
 
 namespace SmtcBridge.MediaSession;
 
 public class MediaSessionListener : IDisposable
 {
-	private static readonly JsonSerializerOptions? JsonSerializerOptions = new()
-	{
-		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-		TypeInfoResolver = SourceGenerationContext.Default,
-		PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
-	};
-
 	private readonly GlobalSystemMediaTransportControlsSessionManager _sessionManager;
 	private readonly Action<MediaPropertiesDto> _callback;
 	private GlobalSystemMediaTransportControlsSession? _currentSession;
-	private MediaPropertiesDto? _currentMediaPropertiesDto;
+	private MediaPropertiesDto? _currentMediaPropertiesDto = MediaPropertiesDto.Empty;
 
 	public MediaSessionListener(GlobalSystemMediaTransportControlsSessionManager sessionManager,
 		Action<MediaPropertiesDto> callback)
@@ -53,6 +44,10 @@ public class MediaSessionListener : IDisposable
 			await UpdateMediaProperties(mediaProperties);
 			session.MediaPropertiesChanged += OnMediaPropertiesChanged;
 		}
+		else
+		{
+			SetDto(MediaPropertiesDto.Empty);
+		}
 
 		_currentSession = session;
 	}
@@ -70,10 +65,13 @@ public class MediaSessionListener : IDisposable
 		var dto = mediaProperties == null
 			? MediaPropertiesDto.Empty
 			: await MediaPropertiesDto.FromMediaProperties(mediaProperties);
+		SetDto(dto);
+	}
+
+	private void SetDto(MediaPropertiesDto dto)
+	{
 		if (dto == _currentMediaPropertiesDto) return;
-
 		_callback.Invoke(dto);
-
 		_currentMediaPropertiesDto = dto;
 	}
 
