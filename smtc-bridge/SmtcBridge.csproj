@@ -9,4 +9,17 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="StreamDeck-Tools" Version="6.2.0"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="manifest.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="imgs/**/*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 </Project>

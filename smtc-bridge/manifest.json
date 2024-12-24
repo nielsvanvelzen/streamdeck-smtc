@@ -8,7 +8,7 @@
 	"Category": "System Media Transport Controls",
 	"CategoryIcon": "imgs/plugin/category-icon",
 	"Icon": "imgs/plugin/marketplace",
-	"CodePath": "bin/plugin.js",
+	"CodePath": "SmtcBridge.exe",
 	"SDKVersion": 2,
 	"Software": {
 		"MinimumVersion": "6.4"
@@ -19,10 +19,6 @@
 			"MinimumVersion": "10"
 		}
 	],
-	"Nodejs": {
-		"Version": "20",
-		"Debug": "enabled"
-	},
 	"Actions": [
 		{
 			"Name": "Media thumbnail",

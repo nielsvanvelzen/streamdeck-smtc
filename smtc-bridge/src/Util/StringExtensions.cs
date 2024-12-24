@@ -1,4 +1,4 @@
-﻿namespace SmtcBridge;
+﻿namespace SmtcBridge.Util;
 
 public static class StringExtensions
 {

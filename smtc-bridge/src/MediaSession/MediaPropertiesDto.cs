@@ -2,8 +2,9 @@
 using Windows.Media;
 using Windows.Media.Control;
 using Windows.Storage.Streams;
+using SmtcBridge.Util;
 
-namespace SmtcBridge;
+namespace SmtcBridge.MediaSession;
 
 public record MediaPropertiesDto(
 	string? AlbumArtist = null,

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtcBridge", "packages/smtc-bridge/SmtcBridge.csproj", "{62D029D6-DA81-4ADE-BCE3-9F88FEF9567B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmtcBridge", "smtc-bridge/SmtcBridge.csproj", "{62D029D6-DA81-4ADE-BCE3-9F88FEF9567B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

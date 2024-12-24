@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using Windows.Media.Control;
 
-namespace SmtcBridge;
+namespace SmtcBridge.MediaSession;
 
 public class MediaSessionListener : IDisposable
 {
@@ -14,12 +14,12 @@ public class MediaSessionListener : IDisposable
 	};
 
 	private readonly GlobalSystemMediaTransportControlsSessionManager _sessionManager;
-	private readonly Action<string> _callback;
+	private readonly Action<MediaPropertiesDto> _callback;
 	private GlobalSystemMediaTransportControlsSession? _currentSession;
 	private MediaPropertiesDto? _currentMediaPropertiesDto;
 
 	public MediaSessionListener(GlobalSystemMediaTransportControlsSessionManager sessionManager,
-		Action<string> callback)
+		Action<MediaPropertiesDto> callback)
 	{
 		_sessionManager = sessionManager;
 		_callback = callback;
@@ -27,6 +27,8 @@ public class MediaSessionListener : IDisposable
 		SetSession(sessionManager.GetCurrentSession());
 		sessionManager.CurrentSessionChanged += OnSessionChanged;
 	}
+
+	public MediaPropertiesDto? CurrentMediaPropertiesDto  => _currentMediaPropertiesDto;
 
 	private void OnSessionChanged(GlobalSystemMediaTransportControlsSessionManager sender,
 		CurrentSessionChangedEventArgs args)
@@ -70,8 +72,7 @@ public class MediaSessionListener : IDisposable
 			: await MediaPropertiesDto.FromMediaProperties(mediaProperties);
 		if (dto == _currentMediaPropertiesDto) return;
 
-		var json = JsonSerializer.Serialize(dto, JsonSerializerOptions);
-		_callback.Invoke(json);
+		_callback.Invoke(dto);
 
 		_currentMediaPropertiesDto = dto;
 	}
