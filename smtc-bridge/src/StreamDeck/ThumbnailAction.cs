@@ -11,7 +11,9 @@ public partial class ThumbnailAction : KeypadBase
 
 	public ThumbnailAction(ISDConnection connection, InitialPayload payload) : base(connection, payload)
 	{
-		var sessionManager = GlobalSystemMediaTransportControlsSessionManager.RequestAsync().GetResults();
+		var sessionManagerTask = GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
+		sessionManagerTask.Wait();
+		var sessionManager = sessionManagerTask.GetResults();
 		_mediaSessionListener = new MediaSessionListener(sessionManager, dto => Update(dto).Wait());
 	}
 
