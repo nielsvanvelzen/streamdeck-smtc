@@ -15,23 +15,18 @@ public class MediaSessionListener : IDisposable
 		_sessionManager = sessionManager;
 		_callback = callback;
 
-		SetSession(sessionManager.GetCurrentSession());
+		SetSession(sessionManager.GetCurrentSession()).Wait();
 		sessionManager.CurrentSessionChanged += OnSessionChanged;
 	}
 
-	public MediaPropertiesDto? CurrentMediaPropertiesDto  => _currentMediaPropertiesDto;
-
-	private void OnSessionChanged(GlobalSystemMediaTransportControlsSessionManager sender,
+	private async void OnSessionChanged(GlobalSystemMediaTransportControlsSessionManager sender,
 		CurrentSessionChangedEventArgs args)
 	{
 		var session = sender.GetCurrentSession();
-		if (session != null)
-		{
-			session.MediaPropertiesChanged += OnMediaPropertiesChanged;
-		}
+		await SetSession(session);
 	}
 
-	private async void SetSession(GlobalSystemMediaTransportControlsSession? session)
+	private async Task SetSession(GlobalSystemMediaTransportControlsSession? session)
 	{
 		if (_currentSession != null)
 		{
